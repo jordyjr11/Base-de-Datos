@@ -1,0 +1,40 @@
+// Lista inicial de productos
+let productos = [
+  { nombre: "Mouse inalámbrico", precio: "$10", descripcion: "Mouse ergonómico para oficina." },
+  { nombre: "Teclado mecánico", precio: "$30", descripcion: "Ideal para programadores y gamers." },
+  { nombre: "Audífonos Bluetooth", precio: "$20", descripcion: "Con cancelación de ruido." }
+];
+
+// Referencia al elemento UL
+const lista = document.getElementById("lista-productos");
+
+// Función para renderizar productos
+function renderizarLista() {
+  // Limpiar lista antes de volver a renderizar
+  lista.innerHTML = "";
+
+  // Recorrer la lista y agregar elementos
+  productos.forEach(producto => {
+    const li = document.createElement("li");
+    li.innerHTML = `
+      <strong>${producto.nombre}</strong><br>
+      Precio: ${producto.precio}<br>
+      ${producto.descripcion}
+    `;
+    lista.appendChild(li);
+  });
+}
+
+// Agregar producto nuevo al final
+document.getElementById("btn-agregar").addEventListener("click", () => {
+  const nuevoProducto = {
+    nombre: "Producto nuevo",
+    precio: "$00",
+    descripcion: "Descripción breve del nuevo producto."
+  };
+  productos.push(nuevoProducto);
+  renderizarLista();
+});
+
+// Renderizar la lista al cargar la página
+window.onload = renderizarLista;
